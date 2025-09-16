@@ -1,0 +1,360 @@
+<sdf version='1.7'>
+  <model name='rover'>
+    <pose>0 0 0.5 0 0 0</pose>
+    <link name='base_link'>
+      <inertial>
+        <pose>-0.200442 -0.000145 0.03343 0 -0 0</pose>
+        <mass>28.7484</mass>
+        <inertia>
+          <ixx>0.0489809</ixx>
+          <ixy>-5.84646e-06</ixy>
+          <ixz>-0.00696749</ixz>
+          <iyy>0.259969</iyy>
+          <iyz>-2.53149e-06</iyz>
+          <izz>0.268329</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>meshes/base_link.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='base_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>meshes/base_link.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.2 0.2 0.2 1</ambient>
+          <diffuse>0.5 0.5 0.5 1</diffuse>
+          <specular>0.8 0.8 0.8 1</specular>
+        </material>
+      </visual>
+      <visual name='base_link_fixed_joint_lump__lidar_visual_1'>
+        <pose>0.2 0 0.20682 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>meshes/lidar.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <sensor name='laser' type='ray'>
+        <visualize>1</visualize>
+        <update_rate>10</update_rate>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>1024</samples>
+              <resolution>1</resolution>
+              <min_angle>-3.14159</min_angle>
+              <max_angle>3.14159</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.1</min>
+            <max>2</max>
+            <resolution>0.1</resolution>
+          </range>
+        </ray>
+        <plugin name='gazebo_ros_laser' filename='libgazebo_ros_ray_sensor.so'>
+          <ros>
+            <namespace>/rover</namespace>
+            <remapping>~/out:=scan</remapping>
+          </ros>
+          <output_type>sensor_msgs/LaserScan</output_type>
+          <frame_name>base_link</frame_name>
+        </plugin>
+        <pose>0.2 0 0.20682 0 -0 0</pose>
+      </sensor>
+    </link>
+    <joint name='left_back_joint' type='revolute'>
+      <pose relative_to='base_link'>-0.36808 0.37966 -0.16184 0 -0 0</pose>
+      <parent>base_link</parent>
+      <child>left_back</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='left_back'>
+      <pose relative_to='left_back_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>5.3e-05 0.04643 -0.000245 0 -0 0</pose>
+        <mass>1.80318</mass>
+        <inertia>
+          <ixx>0.00841984</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0141488</iyy>
+          <iyz>0</iyz>
+          <izz>0.00843426</izz>
+        </inertia>
+      </inertial>
+      <collision name='left_back_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>meshes/left_back.dae</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.3</mu>     <!-- lateral friction -->
+              <mu2>0.3</mu2>   <!-- longitudinal friction -->
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='left_back_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>meshes/left_back.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.5 0.2 0.3 1</ambient>
+          <diffuse>0.9 0.4 0.6 1</diffuse>
+          <specular>0.2 0.2 0.2 1</specular>
+        </material>
+      </visual>
+    </link>
+    <joint name='left_front_joint' type='revolute'>
+      <pose relative_to='base_link'>0.3682 0.38012 -0.16177 0 -0 0</pose>
+      <parent>base_link</parent>
+      <child>left_front</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='left_front'>
+      <pose relative_to='left_front_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>5.3e-05 0.04643 -0.000245 0 -0 0</pose>
+        <mass>1.80318</mass>
+        <inertia>
+          <ixx>0.0084266</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0141488</iyy>
+          <iyz>0</iyz>
+          <izz>0.0084275</izz>
+        </inertia>
+      </inertial>
+      <collision name='left_front_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>meshes/left_front.dae</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.3</mu>     <!-- lateral friction -->
+              <mu2>0.3</mu2>   <!-- longitudinal friction -->
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='left_front_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>meshes/left_front.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.5 0.2 0.3 1</ambient>
+          <diffuse>0.9 0.4 0.6 1</diffuse>
+          <specular>0.2 0.2 0.2 1</specular>
+        </material>
+      </visual>
+    </link>
+    <joint name='right_back_joint' type='revolute'>
+      <pose relative_to='base_link'>-0.36808 -0.3807 -0.16164 0 -0 0</pose>
+      <parent>base_link</parent>
+      <child>right_back</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='right_back'>
+      <pose relative_to='right_back_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-5.3e-05 -0.04643 -0.000245 0 -0 0</pose>
+        <mass>1.80318</mass>
+        <inertia>
+          <ixx>0.00841984</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0141488</iyy>
+          <iyz>0</iyz>
+          <izz>0.00843426</izz>
+        </inertia>
+      </inertial>
+      <collision name='right_back_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>meshes/right_back.dae</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.3</mu>     <!-- lateral friction -->
+              <mu2>0.3</mu2>   <!-- longitudinal friction -->
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='right_back_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>meshes/right_back.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.5 0.2 0.3 1</ambient>
+          <diffuse>0.9 0.4 0.6 1</diffuse>
+          <specular>0.2 0.2 0.2 1</specular>
+        </material>
+      </visual>
+    </link>
+    <joint name='right_front_joint' type='revolute'>
+      <pose relative_to='base_link'>0.3682 -0.37989 -0.16177 0 -0 0</pose>
+      <parent>base_link</parent>
+      <child>right_front</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='right_front'>
+      <pose relative_to='right_front_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-5.3e-05 -0.04643 -0.000245 0 -0 0</pose>
+        <mass>1.80318</mass>
+        <inertia>
+          <ixx>0.00841975</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0141488</iyy>
+          <iyz>0</iyz>
+          <izz>0.00843434</izz>
+        </inertia>
+      </inertial>
+      <collision name='right_front_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>meshes/right_front.dae</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.3</mu>     <!-- lateral friction -->
+              <mu2>0.3</mu2>   <!-- longitudinal friction -->
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='right_front_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>meshes/right_front.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.5 0.2 0.3 1</ambient>
+          <diffuse>0.9 0.4 0.6 1</diffuse>
+          <specular>0.2 0.2 0.2 1</specular>
+        </material>
+      </visual>
+    </link>
+    <plugin name='rover_joint_state_publisher' filename='libgazebo_ros_joint_state_publisher.so'>
+      <ros>
+        <namespace>/rover</namespace>
+      </ros>
+      <update_rate>50</update_rate>
+      <joint_name>left_front_joint</joint_name>
+      <joint_name>left_back_joint</joint_name>
+      <joint_name>right_front_joint</joint_name>
+      <joint_name>right_back_joint</joint_name>
+    </plugin>
+    <static>0</static>
+    <plugin name='skid_steer_drive' filename='libgazebo_ros_diff_drive.so'>
+      <ros>
+        <namespace>/rover</namespace>
+      </ros>
+      <num_wheel_pairs>2</num_wheel_pairs>
+      <update_rate>30</update_rate>
+      <left_joint>left_front_joint</left_joint>
+      <right_joint>right_front_joint</right_joint>
+      <left_joint>left_back_joint</left_joint>
+      <right_joint>right_back_joint</right_joint>
+      <wheel_separation>0.76</wheel_separation>
+      <wheel_separation>0.76</wheel_separation>
+      <wheel_diameter>0.11</wheel_diameter>
+      <wheel_diameter>0.11</wheel_diameter>
+      <max_wheel_torque>20</max_wheel_torque>
+      <max_wheel_acceleration>1.0</max_wheel_acceleration>
+      <publish_odom>1</publish_odom>
+      <publish_odom_tf>1</publish_odom_tf>
+      <publish_wheel_tf>1</publish_wheel_tf>
+      <odometry_frame>odom</odometry_frame>
+      <robot_base_frame>base_link</robot_base_frame>
+    </plugin>
+  </model>
+</sdf>
