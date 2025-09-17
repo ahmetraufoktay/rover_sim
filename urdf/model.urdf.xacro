@@ -10,14 +10,29 @@
   <link name="base_link">
     <visual>
       <geometry>
-        <mesh filename="package://rover_sim/meshes/base_link.stl" />
+        <mesh filename="package://rover_sim/meshes/base_link.dae" />
       </geometry>
-      <material name="grey"/>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://rover_sim/meshes/base_link.stl" />
+        <mesh filename="package://rover_sim/meshes/base_link.dae" />
       </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>1.0</mu>          <!-- longitudinal friction -->
+            <mu2>1.0</mu2>        <!-- lateral friction -->
+            <slip1>0.0</slip1>    <!-- slip in longitudinal direction -->
+            <slip2>0.0</slip2>    <!-- slip in lateral direction -->
+          </ode>
+        </friction>
+        <contact>
+          <ode>
+            <kp>1e6</kp>          <!-- contact stiffness -->
+            <kd>1</kd>            <!-- contact damping -->
+          </ode>
+        </contact>
+      </surface>
     </collision>
     <inertial>
       <origin xyz="-0.20184 -0.000146 0.032825" rpy="0 0 0" />
@@ -31,14 +46,30 @@
   <link name="left_front">
     <visual>
       <geometry>
-        <mesh filename="package://rover_sim/meshes/left_front.stl" />
+        <mesh filename="package://rover_sim/meshes/left_front.dae" />
       </geometry>
       <material name="pink"/>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://rover_sim/meshes/left_front.stl" />
+        <mesh filename="package://rover_sim/meshes/left_front.dae" />
       </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>1.0</mu>          <!-- longitudinal friction -->
+            <mu2>1.0</mu2>        <!-- lateral friction -->
+            <slip1>0.0</slip1>    <!-- slip in longitudinal direction -->
+            <slip2>0.0</slip2>    <!-- slip in lateral direction -->
+          </ode>
+        </friction>
+        <contact>
+          <ode>
+            <kp>1e6</kp>          <!-- contact stiffness -->
+            <kd>1</kd>            <!-- contact damping -->
+          </ode>
+        </contact>
+      </surface>
     </collision>
     <inertial>
       <origin xyz="0.000053 0.04643 -0.000245" rpy="0 0 0" />
@@ -51,21 +82,37 @@
   <joint name="left_front_joint" type="continuous">
     <parent link="base_link" />
     <child link="left_front" />
-    <origin xyz="0.3682 0.38012 -0.16177" rpy="0 0 0" />
+    <origin xyz="0.38106 0.31837 -0.16074" rpy="0 0 0" />
     <axis xyz="0 1 0" />
   </joint>
 
   <link name="right_front">
     <visual>
       <geometry>
-        <mesh filename="package://rover_sim/meshes/right_front.stl" />
+        <mesh filename="package://rover_sim/meshes/right_front.dae" />
       </geometry>
       <material name="pink"/>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://rover_sim/meshes/right_front.stl" />
+        <mesh filename="package://rover_sim/meshes/right_front.dae" />
       </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>1.0</mu>          <!-- longitudinal friction -->
+            <mu2>1.0</mu2>        <!-- lateral friction -->
+            <slip1>0.0</slip1>    <!-- slip in longitudinal direction -->
+            <slip2>0.0</slip2>    <!-- slip in lateral direction -->
+          </ode>
+        </friction>
+        <contact>
+          <ode>
+            <kp>1e6</kp>          <!-- contact stiffness -->
+            <kd>1</kd>            <!-- contact damping -->
+          </ode>
+        </contact>
+      </surface>
     </collision>
     <inertial>
       <origin xyz="-0.000053 -0.04643 -0.000245" rpy="0 0 0" />
@@ -78,21 +125,37 @@
   <joint name="right_front_joint" type="continuous">
     <parent link="base_link" />
     <child link="right_front" />
-    <origin xyz="0.3682 -0.37989 -0.16177" rpy="0 0 0" />
+    <origin xyz="0.38106 -0.31837 -0.16074" rpy="0 0 0" />
     <axis xyz="0 1 0" />
   </joint>
 
   <link name="left_back">
     <visual>
       <geometry>
-        <mesh filename="package://rover_sim/meshes/left_back.stl" />
+        <mesh filename="package://rover_sim/meshes/left_back.dae" />
       </geometry>
       <material name="pink"/>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://rover_sim/meshes/left_back.stl" />
+        <mesh filename="package://rover_sim/meshes/left_back.dae" />
       </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>1.0</mu>          <!-- longitudinal friction -->
+            <mu2>1.0</mu2>        <!-- lateral friction -->
+            <slip1>0.0</slip1>    <!-- slip in longitudinal direction -->
+            <slip2>0.0</slip2>    <!-- slip in lateral direction -->
+          </ode>
+        </friction>
+        <contact>
+          <ode>
+            <kp>1e6</kp>          <!-- contact stiffness -->
+            <kd>1</kd>            <!-- contact damping -->
+          </ode>
+        </contact>
+      </surface>
     </collision>
     <inertial>
       <origin xyz="0.000053 0.04643 -0.000245" rpy="0 0 0" />
@@ -105,21 +168,37 @@
   <joint name="left_back_joint" type="continuous">
     <parent link="base_link" />
     <child link="left_back" />
-    <origin xyz="-0.36808 0.37966 -0.16184" rpy="0 0 0" />
+    <origin xyz="-0.38139 0.31387 -0.16074" rpy="0 0 0" />
     <axis xyz="0 1 0" />
   </joint>
 
   <link name="right_back">
     <visual>
       <geometry>
-        <mesh filename="package://rover_sim/meshes/right_back.stl" />
+        <mesh filename="package://rover_sim/meshes/right_back.dae" />
       </geometry>
       <material name="pink"/>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://rover_sim/meshes/right_back.stl" />
+        <mesh filename="package://rover_sim/meshes/right_back.dae" />
       </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>1.0</mu>          <!-- longitudinal friction -->
+            <mu2>1.0</mu2>        <!-- lateral friction -->
+            <slip1>0.0</slip1>    <!-- slip in longitudinal direction -->
+            <slip2>0.0</slip2>    <!-- slip in lateral direction -->
+          </ode>
+        </friction>
+        <contact>
+          <ode>
+            <kp>1e6</kp>          <!-- contact stiffness -->
+            <kd>1</kd>            <!-- contact damping -->
+          </ode>
+        </contact>
+      </surface>
     </collision>
     <inertial>
       <origin xyz="-0.000053 -0.04643 -0.000245" rpy="0 0 0" />
@@ -132,7 +211,7 @@
   <joint name="right_back_joint" type="continuous">
     <parent link="base_link" />
     <child link="right_back" />
-    <origin xyz="-0.36808 -0.3807 -0.16164" rpy="0 0 0" />
+    <origin xyz="-0.38139 -0.31387 -0.16074" rpy="0 0 0" />
     <axis xyz="0 1 0" />
   </joint>
 
@@ -140,7 +219,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://rover_sim/meshes/lidar.stl" />
+        <mesh filename="package://rover_sim/meshes/lidar.dae" />
       </geometry>
       <material name="pink" />
     </visual>
