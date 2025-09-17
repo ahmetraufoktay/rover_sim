@@ -19,7 +19,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>meshes/base_link.dae</uri>
+            <uri>meshes/base_link.stl</uri>
           </mesh>
         </geometry>
       </collision>
@@ -28,7 +28,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>meshes/base_link.dae</uri>
+            <uri>meshes/base_link.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -42,7 +42,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>meshes/lidar.dae</uri>
+            <uri>meshes/lidar.stl</uri>
           </mesh>
         </geometry>
       </visual>
@@ -76,7 +76,7 @@
       </sensor>
     </link>
     <joint name='left_back_joint' type='revolute'>
-      <pose relative_to='base_link'>-0.36808 0.37966 -0.16184 0 -0 0</pose>
+      <pose relative_to='base_link'>-0.38139 0.31387 -0.16074 0 -0 0</pose>
       <parent>base_link</parent>
       <child>left_back</child>
       <axis>
@@ -110,7 +110,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>meshes/left_back.dae</uri>
+            <uri>meshes/left_back.stl</uri>
           </mesh>
         </geometry>
         <surface>
@@ -127,7 +127,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>meshes/left_back.dae</uri>
+            <uri>meshes/left_back.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -138,7 +138,7 @@
       </visual>
     </link>
     <joint name='left_front_joint' type='revolute'>
-      <pose relative_to='base_link'>0.3682 0.38012 -0.16177 0 -0 0</pose>
+      <pose relative_to='base_link'>0.38106 0.31837 -0.16074 0 -0 0</pose>
       <parent>base_link</parent>
       <child>left_front</child>
       <axis>
@@ -172,7 +172,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>meshes/left_front.dae</uri>
+            <uri>meshes/left_front.stl</uri>
           </mesh>
         </geometry>
         <surface>
@@ -189,7 +189,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>meshes/left_front.dae</uri>
+            <uri>meshes/left_front.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -200,7 +200,7 @@
       </visual>
     </link>
     <joint name='right_back_joint' type='revolute'>
-      <pose relative_to='base_link'>-0.36808 -0.3807 -0.16164 0 -0 0</pose>
+      <pose relative_to='base_link'>-0.38139 -0.31387 -0.16074 0 -0 0</pose>
       <parent>base_link</parent>
       <child>right_back</child>
       <axis>
@@ -234,7 +234,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>meshes/right_back.dae</uri>
+            <uri>meshes/right_back.stl</uri>
           </mesh>
         </geometry>
         <surface>
@@ -251,7 +251,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>meshes/right_back.dae</uri>
+            <uri>meshes/right_back.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -262,7 +262,7 @@
       </visual>
     </link>
     <joint name='right_front_joint' type='revolute'>
-      <pose relative_to='base_link'>0.3682 -0.37989 -0.16177 0 -0 0</pose>
+      <pose relative_to='base_link'>0.38106 -0.31837 -0.16074 0 -0 0</pose>
       <parent>base_link</parent>
       <child>right_front</child>
       <axis>
@@ -296,7 +296,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>meshes/right_front.dae</uri>
+            <uri>meshes/right_front.stl</uri>
           </mesh>
         </geometry>
         <surface>
@@ -313,7 +313,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>meshes/right_front.dae</uri>
+            <uri>meshes/right_front.stl</uri>
           </mesh>
         </geometry>
         <material>
