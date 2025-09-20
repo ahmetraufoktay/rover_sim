@@ -35,6 +35,11 @@ def generate_launch_description():
 
     rsp_launch_py = IncludeLaunchDescription(
         PathJoinSubstitution([FindPackageShare('rover_sim'), 'launch', 'rsp.launch.py']),
+        launch_arguments={
+            "use_sim_time": LaunchConfiguration("use_sim_time"),
+            "urdf_package": LaunchConfiguration("urdf_package"),
+            "urdf_package_path": LaunchConfiguration("urdf_package_path"),
+        }.items(),
     )
 
     urdf_spawner_node = Node(

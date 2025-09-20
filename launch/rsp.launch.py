@@ -1,35 +1,28 @@
-import os
-
-from ament_index_python.packages import get_package_share_directory
-
 from launch import LaunchDescription
+from launch.actions import DeclareLaunchArgument, OpaqueFunction
 from launch.substitutions import LaunchConfiguration
-from launch.actions import DeclareLaunchArgument
+import xacro, os
+from ament_index_python.packages import get_package_share_directory
 from launch_ros.actions import Node
 
-import xacro
+def launch_setup(context, *args, **kwargs):
+    urdf_package = LaunchConfiguration('urdf_package').perform(context)
+    urdf_package_path = LaunchConfiguration('urdf_package_path').perform(context)
 
-
-def generate_launch_description():
-    use_sim_time = LaunchConfiguration('use_sim_time')
-
-    pkg_path = os.path.join(get_package_share_directory('rover_sim'))
-    xacro_file = os.path.join(pkg_path,'urdf','model.urdf.xacro')
+    pkg_path = get_package_share_directory(urdf_package)
+    xacro_file = os.path.join(pkg_path, urdf_package_path)
     robot_description_config = xacro.process_file(xacro_file).toxml()
-    
-    params = {'robot_description': robot_description_config, 'use_sim_time': use_sim_time}
-    node_robot_state_publisher = Node(
+
+    return [Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
         output='screen',
-        parameters=[params]
-    )
+        parameters=[{'robot_description': robot_description_config}]
+    )]
 
+def generate_launch_description():
     return LaunchDescription([
-        DeclareLaunchArgument(
-            'use_sim_time',
-            default_value='false',
-            description='Use sim time if true'),
-
-        node_robot_state_publisher
+        DeclareLaunchArgument('urdf_package', default_value='rover_sim'),
+        DeclareLaunchArgument('urdf_package_path', default_value='urdf/model.urdf.xacro'),
+        OpaqueFunction(function=launch_setup)  # Burada path'i çözüyor
     ])
