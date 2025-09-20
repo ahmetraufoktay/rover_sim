@@ -215,7 +215,7 @@
     <axis xyz="0 1 0" />
   </joint>
 
-  <link name="lidar">
+  <link name="lidar_link">
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
@@ -226,11 +226,11 @@
   </link>
   <joint name='lidar_joint' type='fixed'>
     <parent link="base_link"/>
-    <child link="lidar"/>
+    <child link="lidar_link"/>
     <origin xyz="0.2 0 0.20682" rpy="0 0 0"/>
   </joint>
   
-  <link name="imu">
+  <link name="imu_link">
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
@@ -241,12 +241,65 @@
   </link>
   <joint name='imu_joint' type='fixed'>
     <parent link="base_link"/>
-    <child link="imu"/>
+    <child link="imu_link"/>
     <origin xyz="0 0.05 0.031" rpy="0 0 0"/>
   </joint>
 
+  <link name="camera_link">
+		<visual>
+			<geometry>
+				<box size="0.03 0.09 0.03"/>
+			</geometry>
+			<material name="camera_material">
+				<color rgba="0.3 0.3 0.3 1.0"/>
+			</material>
+		</visual>
+		<inertial>
+			<mass value="0.1"/>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6"/>
+		</inertial>
+	</link>
 
-  <gazebo reference="imu">
+	<joint name="camera_joint" type="fixed">
+		<parent link="base_link"/>
+		<child link="camera_link"/>
+		<origin xyz="0.28 0 0.12" rpy="0 0 0"/>
+	</joint>
+
+	<link name="camera_frame_link"></link>
+	
+	<joint name="name" type="fixed">
+		<parent link="camera_link" />
+		<child link="camera_frame_link" />
+		<origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}" />
+	</joint>
+
+	<gazebo reference="camera_link">
+		<sensor type="depth" name="camera">
+			<update_rate>5</update_rate>
+			<visualize>true</visualize>
+			<camera>
+				<horizontal_fov>1.5708</horizontal_fov>
+				<image>
+					<format>R8G8B8</format>
+					<width>640</width>
+					<height>480</height>
+				</image>
+				<clip>
+					<near>.05</near>
+					<far>20.0</far>
+				</clip>
+			</camera>
+			<plugin name="depth_camera" filename="libgazebo_ros_camera.so">
+				<ros>
+					<namespace>/rover</namespace>
+				</ros>
+				<frame_name>camera_frame_link</frame_name>
+			</plugin>
+		</sensor>
+	</gazebo>
+  <gazebo reference="imu_link">
     <sensor type="imu" name="imu_sensor">
       <always_on>true</always_on>
       <update_rate>100</update_rate>   <!-- Hz -->
@@ -300,11 +353,11 @@
         </ros>
         <update_rate>100</update_rate>
         <!-- <gaussian_noise>0.0001</gaussian_noise> --> <!-- remove other noises before uncommenting it> -->
-        <frame_name>imu</frame_name>
+        <frame_name>imu_link</frame_name>
       </plugin>
     </sensor>
   </gazebo>
-  <gazebo reference="lidar">
+  <gazebo reference="lidar_link">
     <sensor type="ray" name="laser">
       <pose>0 0 0 0 0 0</pose>
       <visualize>true</visualize>
@@ -330,7 +383,7 @@
           <remapping>~/out:=scan</remapping>
         </ros>
         <output_type>sensor_msgs/LaserScan</output_type>
-        <frame_name>lidar</frame_name>
+        <frame_name>lidar_link</frame_name>
       </plugin>
     </sensor>
   </gazebo>
