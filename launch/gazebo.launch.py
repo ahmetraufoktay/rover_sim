@@ -25,11 +25,18 @@ def generate_launch_description():
                                       description='The path to the robot description relative to the package root',
                                       default_value='urdf/model.urdf.xacro')
 
+    world_arg = DeclareLaunchArgument(
+        'world',
+        default_value='empty_worlds/empty.world',
+        description='Optional world file to load in Gazebo'
+    )
+    
     empty_world_launch = IncludeLaunchDescription(
         PathJoinSubstitution([FindPackageShare('gazebo_ros'), 'launch', 'gazebo.launch.py']),
         launch_arguments={
             'gui': LaunchConfiguration('gui'),
-            'use_sim_time': LaunchConfiguration('use_sim_time')
+            'use_sim_time': LaunchConfiguration('use_sim_time'),
+            'world' : LaunchConfiguration('world')
         }.items(),
     )
 
@@ -54,6 +61,7 @@ def generate_launch_description():
         gui_arg,
         package_arg,
         model_arg,
+        world_arg,
         use_sim_time_arg,
         empty_world_launch,
         rsp_launch_py,
