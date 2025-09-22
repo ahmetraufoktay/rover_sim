@@ -6,10 +6,13 @@ procs = {}
 
 CMDS = {
     "gazebo" : ["ros2", "launch", "rover_sim", "gazebo.launch.py"],
-    "diff_drive" : ["ros2", "launch", "rover_sim", "diff_drive.launch.py"]
+    "diff_drive" : ["ros2", "launch", "rover_sim", "diff_drive.launch.py"],
+    "slam" : ["ros2", "launch", "rover_sim", "slam.launch.py"],
+    "slam_nav2" : ["ros2", "launch", "rover_sim", "slam.launch.py", "rviz_config_name:=nav2.rviz"],
+    "nav2" : ["ros2", "launch", "rover_sim", "nav2.launch.py"]
 }
 
-NODE_NAMES = ["rqt_robot_steering"]
+NODE_NAMES = []
 
 def _sh(cmd):
     return subprocess.Popen(
@@ -50,6 +53,8 @@ def kill_gazebo_leftovers():
 
 def stop_all_nodes_and_gazebo():
     stop("gazebo")
+    for name in list(procs.keys()):
+        stop(name)
     close_all_nodes()
     kill_gazebo_leftovers()
 
@@ -65,6 +70,18 @@ def main():
 
     btn = QPushButton("Launch diff_drive")
     btn.clicked.connect(lambda: start("diff_drive"))
+    lay.addWidget(btn)
+
+    btn = QPushButton("Launch slam")
+    btn.clicked.connect(lambda: start("slam"))
+    lay.addWidget(btn)
+    
+    btn = QPushButton("Launch slam (nav2)")
+    btn.clicked.connect(lambda: start("slam_nav2"))
+    lay.addWidget(btn)
+
+    btn = QPushButton("Launch nav2")
+    btn.clicked.connect(lambda: start("nav2"))
     lay.addWidget(btn)
 
     btn = QPushButton("Close All Nodes")
