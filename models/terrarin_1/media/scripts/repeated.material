@@ -1,0 +1,14 @@
+material RepeatedMars/Diffuse
+{
+  receive_shadows off
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture mars.png
+      }
+    }
+  }
+}

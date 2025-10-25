@@ -1,0 +1,441 @@
+<sdf version='1.7'>
+  <model name='rover'>
+    <link name='base_link'>
+      <inertial>
+        <pose>-0.200164 -0.000145 0.033128 0 -0 0</pose>
+        <mass>28.7484</mass>
+        <inertia>
+          <ixx>0.0457223</ixx>
+          <ixy>-7.01039e-06</ixy>
+          <ixz>-0.00418583</ixz>
+          <iyy>0.263756</iyy>
+          <iyz>-1.26833e-06</iyz>
+          <izz>0.274375</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rover_sim/meshes/base_link.dae</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='base_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rover_sim/meshes/base_link.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='base_link_fixed_joint_lump__camera_link_visual_1'>
+        <pose>0.28 0 0.12 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.03 0.09 0.03</size>
+          </box>
+        </geometry>
+      </visual>
+      <visual name='base_link_fixed_joint_lump__gps_link_visual_2'>
+        <pose>0 -0.05 0.031 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.03 0.02 0.01</size>
+          </box>
+        </geometry>
+      </visual>
+      <visual name='base_link_fixed_joint_lump__imu_link_visual_3'>
+        <pose>0 0.05 0.031 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.03 0.02 0.01</size>
+          </box>
+        </geometry>
+      </visual>
+      <visual name='base_link_fixed_joint_lump__lidar_link_visual_4'>
+        <pose>0.2 0 0.20682 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rover_sim/meshes/lidar.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <sensor name='gps' type='gps'>
+        <always_on>1</always_on>
+        <update_rate>10</update_rate>
+        <visualize>1</visualize>
+        <gps>
+          <position_sensing>
+            <horizontal>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.0002</stddev>
+              </noise>
+            </horizontal>
+            <vertical>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.0004</stddev>
+              </noise>
+            </vertical>
+          </position_sensing>
+        </gps>
+        <plugin name='gps' filename='libgazebo_ros_gps_sensor.so'>
+          <ros>
+            <namespace>/rover</namespace>
+            <remapping>fix:=gps/fix</remapping>
+          </ros>
+          <frame_id>gps_link</frame_id>
+        </plugin>
+      </sensor>
+      <sensor name='camera' type='depth'>
+        <update_rate>5</update_rate>
+        <visualize>1</visualize>
+        <camera>
+          <horizontal_fov>1.5708</horizontal_fov>
+          <image>
+            <format>R8G8B8</format>
+            <width>640</width>
+            <height>480</height>
+          </image>
+          <clip>
+            <near>0.05</near>
+            <far>20</far>
+          </clip>
+        </camera>
+        <plugin name='depth_camera' filename='libgazebo_ros_camera.so'>
+          <ros>
+            <namespace>/rover</namespace>
+          </ros>
+          <frame_name>camera_frame_link</frame_name>
+        </plugin>
+        <pose>0.28 0 0.12 0 -0 0</pose>
+      </sensor>
+      <sensor name='imu_sensor' type='imu'>
+        <always_on>1</always_on>
+        <update_rate>100</update_rate>
+        <visualize>1</visualize>
+        <imu>
+          <angular_velocity>
+            <x>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.0002</stddev>
+              </noise>
+            </x>
+            <y>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.0002</stddev>
+              </noise>
+            </y>
+            <z>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.0002</stddev>
+              </noise>
+            </z>
+          </angular_velocity>
+          <linear_acceleration>
+            <x>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.017</stddev>
+              </noise>
+            </x>
+            <y>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.017</stddev>
+              </noise>
+            </y>
+            <z>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.017</stddev>
+              </noise>
+            </z>
+          </linear_acceleration>
+        </imu>
+        <plugin name='imu' filename='libgazebo_ros_imu_sensor.so'>
+          <ros>
+            <namespace>/rover</namespace>
+            <remapping>~/out:=imu</remapping>
+          </ros>
+          <update_rate>100</update_rate>
+          <frame_name>imu_link</frame_name>
+        </plugin>
+        <pose>0 0.05 0.031 0 -0 0</pose>
+      </sensor>
+      <sensor name='laser' type='ray'>
+        <visualize>1</visualize>
+        <update_rate>10</update_rate>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>1024</samples>
+              <resolution>1</resolution>
+              <min_angle>-3.14159</min_angle>
+              <max_angle>3.14159</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.1</min>
+            <max>15</max>
+            <resolution>0.1</resolution>
+          </range>
+        </ray>
+        <plugin name='laser' filename='libgazebo_ros_ray_sensor.so'>
+          <ros>
+            <namespace>/rover</namespace>
+            <remapping>~/out:=scan</remapping>
+          </ros>
+          <output_type>sensor_msgs/LaserScan</output_type>
+          <frame_name>lidar_link</frame_name>
+        </plugin>
+        <pose>0.2 0 0.20682 0 -0 0</pose>
+      </sensor>
+    </link>
+    <joint name='left_back_joint' type='revolute'>
+      <pose relative_to='base_link'>-0.38139 0.31387 -0.16074 0 -0 0</pose>
+      <parent>base_link</parent>
+      <child>left_back</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='left_back'>
+      <pose relative_to='left_back_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>5.3e-05 0.04643 -0.000245 0 -0 0</pose>
+        <mass>3.6</mass>
+        <inertia>
+          <ixx>0.017</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.028</iyy>
+          <iyz>0</iyz>
+          <izz>0.017</izz>
+        </inertia>
+      </inertial>
+      <collision name='left_back_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rover_sim/meshes/left_back.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='left_back_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rover_sim/meshes/left_back.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='left_front_joint' type='revolute'>
+      <pose relative_to='base_link'>0.38106 0.31837 -0.16074 0 -0 0</pose>
+      <parent>base_link</parent>
+      <child>left_front</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='left_front'>
+      <pose relative_to='left_front_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>5.3e-05 0.04643 -0.000245 0 -0 0</pose>
+        <mass>3.6</mass>
+        <inertia>
+          <ixx>0.017</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.028</iyy>
+          <iyz>0</iyz>
+          <izz>0.017</izz>
+        </inertia>
+      </inertial>
+      <collision name='left_front_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rover_sim/meshes/left_front.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='left_front_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rover_sim/meshes/left_front.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='right_back_joint' type='revolute'>
+      <pose relative_to='base_link'>-0.38139 -0.31387 -0.16074 0 -0 0</pose>
+      <parent>base_link</parent>
+      <child>right_back</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='right_back'>
+      <pose relative_to='right_back_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-5.3e-05 -0.04643 -0.000245 0 -0 0</pose>
+        <mass>3.6</mass>
+        <inertia>
+          <ixx>0.017</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.028</iyy>
+          <iyz>0</iyz>
+          <izz>0.017</izz>
+        </inertia>
+      </inertial>
+      <collision name='right_back_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rover_sim/meshes/right_back.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='right_back_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rover_sim/meshes/right_back.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='right_front_joint' type='revolute'>
+      <pose relative_to='base_link'>0.38106 -0.31837 -0.16074 0 -0 0</pose>
+      <parent>base_link</parent>
+      <child>right_front</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='right_front'>
+      <pose relative_to='right_front_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-5.3e-05 -0.04643 -0.000245 0 -0 0</pose>
+        <mass>3.6</mass>
+        <inertia>
+          <ixx>0.017</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.028</iyy>
+          <iyz>0</iyz>
+          <izz>0.016</izz>
+        </inertia>
+      </inertial>
+      <collision name='right_front_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rover_sim/meshes/right_front.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='right_front_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rover_sim/meshes/right_front.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <plugin name='joint_state_publisher' filename='libgazebo_ros_joint_state_publisher.so'>
+      <ros>
+        <namespace>/rover</namespace>
+      </ros>
+      <update_rate>50</update_rate>
+      <joint_name>left_front_joint</joint_name>
+      <joint_name>left_back_joint</joint_name>
+      <joint_name>right_front_joint</joint_name>
+      <joint_name>right_back_joint</joint_name>
+    </plugin>
+    <static>0</static>
+    <plugin name='skid_steer_drive' filename='libgazebo_ros_diff_drive.so'>
+      <ros>
+        <namespace>/rover</namespace>
+      </ros>
+      <num_wheel_pairs>2</num_wheel_pairs>
+      <update_rate>30</update_rate>
+      <left_joint>left_front_joint</left_joint>
+      <right_joint>right_front_joint</right_joint>
+      <left_joint>left_back_joint</left_joint>
+      <right_joint>right_back_joint</right_joint>
+      <wheel_separation>0.76</wheel_separation>
+      <wheel_separation>0.76</wheel_separation>
+      <wheel_diameter>0.11</wheel_diameter>
+      <wheel_diameter>0.11</wheel_diameter>
+      <max_wheel_torque>20</max_wheel_torque>
+      <max_wheel_acceleration>1.0</max_wheel_acceleration>
+      <publish_odom>1</publish_odom>
+      <publish_odom_tf>1</publish_odom_tf>
+      <publish_wheel_tf>1</publish_wheel_tf>
+      <odometry_frame>odom</odometry_frame>
+      <robot_base_frame>base_link</robot_base_frame>
+    </plugin>
+  </model>
+</sdf>

@@ -1,0 +1,60 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="aruco_pole_2">
+    <pose>0 0 0 0 0 0</pose>
+    <static>true</static>
+    <link name="body">
+      <visual name="pole_visual">
+        <geometry>
+          <mesh><uri>model://aruco_pole_2/media/pole.dae</uri></mesh>
+        </geometry>
+      </visual>
+      <collision name="collision">
+        <geometry>
+          <mesh><uri>model://aruco_pole_2/media/pole.dae</uri></mesh>
+        </geometry>
+      </collision>
+      
+      <visual name="aruco_square_1">
+        <pose>-0.033734 -0.048977 0.602716 2.0943951 1.57079633 0</pose> <!-- position relative to pole -->
+        <geometry>
+            <mesh><uri>model://aruco_pole_2/media/square.dae</uri></mesh>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://aruco_pole_2/materials/scripts</uri>
+            <uri>model://aruco_pole_2/materials/textures</uri>
+            <name>ArucoTexture</name>
+          </script>
+        </material>
+      </visual>
+      <visual name="aruco_square_2">
+        <pose>0.057121 0.000381 0.602716 0 1.57079633 0</pose> <!-- position relative to pole -->
+        <geometry>
+            <mesh><uri>model://aruco_pole_2/media/square.dae</uri></mesh>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://aruco_pole_2/materials/scripts</uri>
+            <uri>model://aruco_pole_2/materials/textures</uri>
+            <name>ArucoTexture</name>
+          </script>
+        </material>
+      </visual>
+      <visual name="aruco_square_3">
+        <pose>-0.031142 0.052622 0.602716 -2.0943951 1.57079633 0</pose> <!-- position relative to pole -->
+        <geometry>
+            <mesh><uri>model://aruco_pole_2/media/square.dae</uri></mesh>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://aruco_pole_2/materials/scripts</uri>
+            <uri>model://aruco_pole_2/materials/textures</uri>
+            <name>ArucoTexture</name>
+          </script>
+        </material>
+      </visual>
+      
+    </link>
+  </model>
+</sdf>
