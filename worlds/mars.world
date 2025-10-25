@@ -1,0 +1,481 @@
+<sdf version='1.7'>
+  <world name='default'>
+    <plugin name='gazebo_ros_factory' filename='libgazebo_ros_factory.so'/>
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <physics type='ode'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <scene>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>0.7 0.7 0.7 1</background>
+      <shadows>1</shadows>
+    </scene>
+    <audio>
+      <device>default</device>
+    </audio>
+    <wind/>
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <latitude_deg>0</latitude_deg>
+      <longitude_deg>0</longitude_deg>
+      <elevation>0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
+    <model name='terrain_1'>
+      <pose>86.5 82.53 0 0 -0 0</pose>
+      <static>1</static>
+      <link name='body'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://terrarin_1/media/terrarin.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://terrarin_1/media/scripts</uri>
+              <uri>model://terrarin_1/media/textures</uri>
+              <name>RepeatedMars/Diffuse</name>
+            </script>
+          </material>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://terrarin_1/media/terrarin.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <light name='user_directional_light_0' type='directional'>
+      <pose>-0.182053 -1.69609 1 0 -0 0</pose>
+      <diffuse>0.5 0.5 0.5 1</diffuse>
+      <specular>0.1 0.1 0.1 1</specular>
+      <direction>0.1 0.1 -0.9</direction>
+      <attenuation>
+        <range>20</range>
+        <constant>0.5</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <cast_shadows>1</cast_shadows>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+    <state world_name='default'>
+      <sim_time>489 118000000</sim_time>
+      <real_time>68 863275603</real_time>
+      <wall_time>1761380801 952280593</wall_time>
+      <iterations>42713</iterations>
+      <model name='Bottle'>
+        <pose>145.543 125.253 0.039226 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='body'>
+          <pose>145.543 125.253 0.039226 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='aruco_pole'>
+        <pose>2.84285 2.28973 2.84472 0 -0 1.13922</pose>
+        <scale>1 1 1</scale>
+        <link name='body'>
+          <pose>2.84285 2.28973 2.84472 0 -0 1.13922</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='aruco_pole_1'>
+        <pose>4.05171 156.123 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='body'>
+          <pose>4.05171 156.123 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='aruco_pole_2'>
+        <pose>175.579 53.7458 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='body'>
+          <pose>175.579 53.7458 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='hammer'>
+        <pose>135.396 165.282 0.020294 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>135.396 165.282 0.020294 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='terrain_1'>
+        <pose>89.4935 88.139 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='body'>
+          <pose>89.4935 88.139 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <light name='user_directional_light_0'>
+        <pose>-0.182053 -1.69609 1 0 -0 0</pose>
+      </light>
+    </state>
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose>145.892 124.507 0.333365 0 0.412046 1.70954</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+    <model name='aruco_pole_1'>
+      <pose>5.90137 156.794 0 0 -0 0</pose>
+      <static>1</static>
+      <link name='body'>
+        <visual name='pole_visual'>
+          <geometry>
+            <mesh>
+              <uri>model://aruco_pole_1/media/pole.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://aruco_pole_1/media/pole.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='aruco_square_1'>
+          <pose>-0.033734 -0.048977 0.602716 -1.04719 1.57079 3.14159</pose>
+          <geometry>
+            <mesh>
+              <uri>model://aruco_pole_1/media/square.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://aruco_pole_1/materials/scripts</uri>
+              <uri>model://aruco_pole_1/materials/textures</uri>
+              <name>ArucoTexture</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='aruco_square_2'>
+          <pose>0.057121 0.000381 0.602716 3.14159 1.57079 3.14159</pose>
+          <geometry>
+            <mesh>
+              <uri>model://aruco_pole_1/media/square.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://aruco_pole_1/materials/scripts</uri>
+              <uri>model://aruco_pole_1/materials/textures</uri>
+              <name>ArucoTexture</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='aruco_square_3'>
+          <pose>-0.031142 0.052622 0.602716 1.04719 1.57079 -3.14159</pose>
+          <geometry>
+            <mesh>
+              <uri>model://aruco_pole_1/media/square.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://aruco_pole_1/materials/scripts</uri>
+              <uri>model://aruco_pole_1/materials/textures</uri>
+              <name>ArucoTexture</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='aruco_pole_2'>
+      <pose>173.447 53.9548 0 0 -0 0</pose>
+      <static>1</static>
+      <link name='body'>
+        <visual name='pole_visual'>
+          <geometry>
+            <mesh>
+              <uri>model://aruco_pole_2/media/pole.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://aruco_pole_2/media/pole.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='aruco_square_1'>
+          <pose>-0.033734 -0.048977 0.602716 -1.04719 1.57079 3.14159</pose>
+          <geometry>
+            <mesh>
+              <uri>model://aruco_pole_2/media/square.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://aruco_pole_2/materials/scripts</uri>
+              <uri>model://aruco_pole_2/materials/textures</uri>
+              <name>ArucoTexture</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='aruco_square_2'>
+          <pose>0.057121 0.000381 0.602716 3.14159 1.57079 3.14159</pose>
+          <geometry>
+            <mesh>
+              <uri>model://aruco_pole_2/media/square.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://aruco_pole_2/materials/scripts</uri>
+              <uri>model://aruco_pole_2/materials/textures</uri>
+              <name>ArucoTexture</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='aruco_square_3'>
+          <pose>-0.031142 0.052622 0.602716 1.04719 1.57079 -3.14159</pose>
+          <geometry>
+            <mesh>
+              <uri>model://aruco_pole_2/media/square.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://aruco_pole_2/materials/scripts</uri>
+              <uri>model://aruco_pole_2/materials/textures</uri>
+              <name>ArucoTexture</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='hammer'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://hammer/meshes/hammer.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://hammer/meshes/hammer.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>134.11 165.282 0 0 -0 0</pose>
+    </model>
+    <model name='aruco_pole'>
+      <pose>1.13801 3.23871 0 0 -0 0</pose>
+      <static>1</static>
+      <link name='body'>
+        <visual name='pole_visual'>
+          <geometry>
+            <mesh>
+              <uri>model://aruco_pole/media/pole.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://aruco_pole/media/pole.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='aruco_square_1'>
+          <pose>-0.033734 -0.048977 0.602716 -1.04719 1.57079 3.14159</pose>
+          <geometry>
+            <mesh>
+              <uri>model://aruco_pole/media/square.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://aruco_pole/materials/scripts</uri>
+              <uri>model://aruco_pole/materials/textures</uri>
+              <name>ArucoTexture</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='aruco_square_2'>
+          <pose>0.057121 0.000381 0.602716 3.14159 1.57079 3.14159</pose>
+          <geometry>
+            <mesh>
+              <uri>model://aruco_pole/media/square.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://aruco_pole/materials/scripts</uri>
+              <uri>model://aruco_pole/materials/textures</uri>
+              <name>ArucoTexture</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='aruco_square_3'>
+          <pose>-0.031142 0.052622 0.602716 1.04719 1.57079 -3.14159</pose>
+          <geometry>
+            <mesh>
+              <uri>model://aruco_pole/media/square.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://aruco_pole/materials/scripts</uri>
+              <uri>model://aruco_pole/materials/textures</uri>
+              <name>ArucoTexture</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='Bottle'>
+      <pose>145.543 125.253 0 0 -0 0</pose>
+      <static>1</static>
+      <link name='body'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://bottle/media/Bottle.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://bottle/media/Bottle.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+  </world>
+</sdf>
