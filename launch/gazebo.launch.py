@@ -1,6 +1,5 @@
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument
-from launch.actions import IncludeLaunchDescription
+from launch.actions import IncludeLaunchDescription, SetEnvironmentVariable, DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
@@ -18,16 +17,23 @@ def generate_launch_description():
         description='Use simulation (Gazebo) clock if true'
     )
 
+    model_path = PathJoinSubstitution([FindPackageShare("rover_sim"), "models"])
+    
+    set_gazebo_model_path = SetEnvironmentVariable(
+        name='GAZEBO_MODEL_PATH',
+        value=[model_path]
+    )
+
     package_arg = DeclareLaunchArgument('urdf_package',
                                         description='The package where the robot description is located',
                                         default_value='rover_sim')
     model_arg = DeclareLaunchArgument('urdf_package_path',
                                       description='The path to the robot description relative to the package root',
-                                      default_value='urdf/model.urdf.xacro')
+                                      default_value='urdf/camera.urdf.xacro')
 
     world_arg = DeclareLaunchArgument(
         'world',
-        default_value='empty_worlds/empty.world',
+        default_value='empty.world',
         description='Optional world file to load in Gazebo'
     )
     
@@ -36,7 +42,7 @@ def generate_launch_description():
         launch_arguments={
             'gui': LaunchConfiguration('gui'),
             'use_sim_time': LaunchConfiguration('use_sim_time'),
-            'world' : LaunchConfiguration('world')
+            'world' : PathJoinSubstitution([FindPackageShare("rover_sim"), "worlds", LaunchConfiguration('world')])
         }.items(),
     )
 
@@ -53,11 +59,12 @@ def generate_launch_description():
         package='gazebo_ros',
         executable='spawn_entity.py',
         name='urdf_spawner',
-        arguments=['-topic', '/robot_description', '-entity', 'rover', '-z', '0.5', '-unpause'],
+        arguments=['-topic', '/robot_description', '-entity', 'rover', '-z', '4.5', '-unpause'],
         output='screen',
     )
 
     return LaunchDescription([
+        set_gazebo_model_path,
         gui_arg,
         package_arg,
         model_arg,
