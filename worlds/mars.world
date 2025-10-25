@@ -87,10 +87,10 @@
       </spot>
     </light>
     <state world_name='default'>
-      <sim_time>489 118000000</sim_time>
-      <real_time>68 863275603</real_time>
-      <wall_time>1761380801 952280593</wall_time>
-      <iterations>42713</iterations>
+      <sim_time>578 404000000</sim_time>
+      <real_time>221 362558464</real_time>
+      <wall_time>1761382887 769996594</wall_time>
+      <iterations>89286</iterations>
       <model name='Bottle'>
         <pose>145.543 125.253 0.039226 0 -0 0</pose>
         <scale>1 1 1</scale>
@@ -122,10 +122,10 @@
         </link>
       </model>
       <model name='aruco_pole_2'>
-        <pose>175.579 53.7458 0 0 -0 0</pose>
+        <pose>163.049 69.3359 -0.005014 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='body'>
-          <pose>175.579 53.7458 0 0 -0 0</pose>
+          <pose>163.049 69.3359 -0.005014 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
@@ -157,7 +157,7 @@
     </state>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose>145.892 124.507 0.333365 0 0.412046 1.70954</pose>
+        <pose>3.41135 -10.1365 12.3495 0 0.736046 1.54954</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>
