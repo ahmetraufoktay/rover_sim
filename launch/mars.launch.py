@@ -2,6 +2,7 @@ from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument
 from launch.substitutions import PathJoinSubstitution, LaunchConfiguration
 from launch_ros.substitutions import FindPackageShare
+from launch_ros.actions import Node
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 def generate_launch_description():
@@ -31,5 +32,10 @@ def generate_launch_description():
                 "world": "mars.world",
                 "use_sim_time": LaunchConfiguration("use_sim_time")
             }.items()
+        ),
+        Node(
+            package="rover_sim",
+            executable="mars",
+            name="mission_node",
         )
     ])

@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.8)
 project(rover_sim)
 
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
@@ -15,6 +18,20 @@ find_package(nav_msgs REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
+
+add_executable(mars src/mars.cpp)
+ament_target_dependencies(mars
+  rclcpp
+  geometry_msgs
+  nav_msgs
+  sensor_msgs
+  std_msgs
+)
+
+install(TARGETS
+  mars
+  DESTINATION lib/${PROJECT_NAME}
+)
 
 install(DIRECTORY
   launch
